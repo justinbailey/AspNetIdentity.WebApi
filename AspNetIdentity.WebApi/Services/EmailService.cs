@@ -23,7 +23,8 @@ namespace AspNetIdentity.WebApi.Services
             var myMessage = new SendGridMessage();
 
             myMessage.AddTo(message.Destination);
-            myMessage.From = new System.Net.Mail.MailAddress("taiseer@bitoftech.net", "Taiseer Joudeh");
+            myMessage.From = new System.Net.Mail.MailAddress(ConfigurationManager.AppSettings["emailService:SendFromAddress"],
+                                                            ConfigurationManager.AppSettings["emailService:SendFromDisplayName"]);
             myMessage.Subject = message.Subject;
             myMessage.Text = message.Body;
             myMessage.Html = message.Body;
